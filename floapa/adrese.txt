@@ -1,0 +1,161 @@
+97	testwait, counter=0 => zf=1
+9f	sleep, hl=counter
+109	inserare procedura in tabel		de=adresa, c=index serv
+136	stergere procedura din tabel (c004)	de=adresa
+
+332	generare numar aleator
+41a	x=x+y
+43a	x=x-y
+45a	x=0
+4a9	x=1
+4b1	x=x-1
+4b9	x=y
+4cd	cmp	x,y
+4e3	cmp	x,0
+4eb	x=hl
+52c	x=x*y
+468	x=x/y	(c037)=x mod y
+7ac	[c050]=40h,hl
+7b3	[c058]=40h,hl
+7ba	[c060]=40h,hl
+7ce	asteapta sa se ia degetul de pe buton (12345)
+89e	x=string(y)	;d=nr total cifre, e=culoare, max 6 cifre
+8a0	x=string(y)	;d=nr total cifre, e=culoare, max b cifre
+
+865	citire port
+8d3	dreptunghi:	hl=adresa,b=lungime,c=inaltime,de=culoare
+882	linie bmp:	hl=destinatie,de=sursa,c=byte2
+			o linie se termina cu 24h
+88e	bitmap:		hl=destinatie,de=sursa,b=lungime,c=byte2
+			o linie se termina cu 24h
+8e8	desenare carti de la c6c5
+
+11ef	timer
+154c	verificare copyright
+1936	scriere cod tasta 12345
+1b33	procedura cupa
+2a6b	chenar		de=offset desen carte,b=nr linii
+2486	init mashine
+2e98	afisare numar
+3d20	calcul combinatie carti
+3db6	calcul cod combinatie
+3e60	test quinta
+3eac	test culoare/bucati/perechi
+3ed9	test bucati/perechi
+3f20	test joker => e=80h () e=0 (joker)
+3f45	corectare numar carti
+3f8b	test careu
+4023	schimbare stare hold
+4220	afisare dolar, 2 frames
+440a	chenar colorat pentru bet/credit
+450a	linie, lungime 25, culoare a, ix=adresa
+471a	desenare carti, (14 chr/linie)
+48db	out 37h,[c407]|8
+4dbe	scrie carti de la c5ac la c5a2 si c5a7
+53ec	copiaza o carte de la ix la (c6c3)	copy_c6c3
+5451	afisare 'american poker'
+586d	afisare/stergere 'select hold cards'
+5b15	afisare 'wins'
+5ca6	sunet afisare carte
+
+
+b1a	desene carti
+9fa	desene carti
+
+2a89	desen,8 linii
+3130	desen,9 linii
+3487	desen,2 linii
+34b7	desen,1 linie
+34c4	desen,1 linie
+34e7	desen,3 linii
+3502	desen,1 linie
+3509	desen,1 linie
+4249	desen,4 linii
+4279	desen dolar, frame 1
+4341	desen dolar, frame 2
+4585	desen,1 linie
+5df9	desen,13 linii
+608d	desen,9 linii
+60fc	desen,255 linii,24 bytes/linie
+621c	desen,3 linii
+6285	desen,3 linii
+62ee	desen,11 linii
+6285	'american poker'
+6386	desen,1 linie
+638f	desen,1 linie
+6398	desen,1 linie
+63aa	desen,1 linie
+63d3	desen,1 linie
+63c5	desen,1 linie
+6411	desen,1 linie
+
+95e8	melodie1
+9f96	tabel melodii
+
+
+c000		valoarea ce va fi atribuita lui i
+c002		counter
+c004->		flag,pointer procedura (tabel de 4 octeti)
+c000-c300	zona date intrerupere
+c03d		temp
+c0af		copyright
+c0be	tip cupa
+		0	nimic
+		1	joker
+		2	pereche
+		7	2 perechi
+		3	3 bucati
+		8	careu/full
+		4	quinta
+		5	5 of a kind
+c0d8	hold:	1bit/1carte
+
+c0e5	castig pentru cupa
+c400		valoare citita de la port
+c414:
+		bit4=wins	
+c418:
+		bit6=procedura tabel c004
+		bit7=intrerupere ceas/apasare tasta cifra
+c094	3	bet temp (folosit pt. tiparire)
+c0da	1	cod tasta cifra (1,2,4,8,16,32)
+c4c4	castig acumulat
+c4d9	3	bet****
+c4fa	3	bet
+c4dc	3	bet
+c0a9	3	bonus
+c0ac	3	bonus acumulat
+c4df	3	credit
+c4f1	3	credit****
+c53*	rnd seed
+c036	random
+c09f		nr afisat, 4 cifre
+c52a		copyright
+c57e	rnd
+
+
+c5a0	pointer in bufferul c5b6
+c5a2	coduri calculate
+c5a7	culori calculate
+c5ac	carti calculate
+	coduri culoare:
+		10->3
+		20->1
+		40->0
+		80->2
+c5b6	a doua etapa a calculului cartilor
+c5c1	prima etapa a calculului cartilor
+c5d9	pointer in bufferul c5c1
+
+c6c3	pointer in bufferul c6cf
+c6c5	cele 5 carti - 1 byte cod + 1 byte culoare
+	coduri:	c,b,a,9,8,7,6,5,4,3,2,1,0
+		50e=joker
+
+c6cf	copie dupa carti de la c6c5/c094
+c0bf	numar carti identice:	c0bf - numar carti
+				c0c0 - cod carte 1
+				c0c1 - numar carti
+				c0c2 - cod carte 2
+c108	numar carti identice:	c108 - id. cu prima carte
+				c109 - id. cu a doua carte
